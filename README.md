@@ -157,31 +157,42 @@ exec 5>&-
 
 
 ## Demoggification (or UUOC: Useless Use of cat)
+> Demoggification on the high level is defined as remuving useless use of `cat`s.
+
 
 - **Bad practice**
     ```shell
     $ cat /etc/passwd | grep rob
     rob::1000:1000: rob:/home/rob:/bin/bash
     ```
+    - This will result in long running time when working on large files. 
+
 - **Good practice**
+    - Instead you should use `grep` function to search through the file for content. 
+
+    - Search (`grep`) for `rob` in the file under the path `/etc/passwd`
     ```shell
     $ grep rob /etc/passwd
     rob:x:1000:1000:rob:/home/rob:/bin/bash
     ```
+    - Redirect `<` file output to `grep` command and serach for `rob`
     ```shell
     $ grep rob </etc/passwd
     rob::1000:1000: rob: /home/rob:/bin/bash
     ```
 
 - **Bad practice**
+    - Use netcat to probe the website, just to see that it exists. You can use this in the if statement to make sure that you web server has started before sending api request, or for monitoring, etc. 
     ```shell
     $ nc -z www. acloud.guru 80 >&/dev/null
     ```
+    - But rather then running a separate binary, you should use example below.
 - **Good practice**
+    - Use build-in bash capability to open its own TCP port. 
     ```shell
     $ 2> /dev/null >/dev/tcp/www.acloud.guru/80
     ```
-
+    - This should not make much differece for a samll scripts, but will improve performance in larger calculations. 
 
 <br><br>
 <hr><hr>
