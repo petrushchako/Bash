@@ -310,10 +310,28 @@ ls (){
 }
 
 ls
-
 ```
 
-### Working with Arrays in Bash
+### Variable scopes
+```bash
+#!/bin/bash
+
+VAR1="ABC"
+
+function init {
+    VAR2="DEF"
+    local VAR3="GHI"
+    echo "Inside the function: $VAR[1-3]" #ABCDEFGHI
+}
+
+echo "Outside of the function $VAR[1-3]" #ABCDEF
+```
+> NOTE<br>
+>Variable VAR2 is visible outside of the function, however, the function has to be called first, for VAR2 to be initialized and declared.<br>
+>The `local VAR3` is only visible inside of the function
+
+
+## Working with Arrays in Bash
 
 
 

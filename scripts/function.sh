@@ -19,5 +19,17 @@ ls (){
 
 ls "-l" | sort -R
 
+
+VAR1="ABC"
+
+function init {
+    VAR2="DEF"
+    local VAR3="GHI"
+    echo "Inside the function: $VAR1$VAR2$VAR3"
+}
+init
+echo "Outside of the function $VAR1$VAR2$VAR3"
+
+
 hello
 quit
