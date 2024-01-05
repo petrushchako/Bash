@@ -1,12 +1,16 @@
 # Bash
 
-- Basics of bash scripting
+- **Basics of bash scripting**
     - [What Is Bash Scripting?](#what-is-bash-scripting)
     - [Working with Special Characters](#working-with-special-characters)
     - [Implementing and/or Lists](#implementing-and-or-lists)
     - [Redirecting I/O, Utility Commands, and Pipes](#redirecting-io-utility-commands-and-pipes)
     - [Demoggification (or UUOC: Useless Use of cat)](#demoggification-or-uuoc-useless-use-of-cat)
 
+- **Variables**
+    - [What Do Variables Look Like and How Do We Use Them?](#what-do-variables-look-like-and-how-do-we-use-them)
+    - [Introducing Bash Functions](#introducing-bash-functions)
+    - [Working with Arrays in Bash](#working-with-arrays-in-bash)
 
 ## What is bash scripting?
 
@@ -243,3 +247,16 @@ exec 5>&-
 
 ## Variables
 
+## What Do Variables Look Like and How Do We Use Them?
+
+
+
+
+
+## Introducing Bash Functions
+
+
+
+
+
+## Working with Arrays in Bash
