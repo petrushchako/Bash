@@ -135,7 +135,7 @@ Common Special Characters Used in Bash
     ![](img/redirect_output.png)
 
 
-<br><br><br>
+<br><br>
 
 **Create your own file descriptor**
 
@@ -159,7 +159,7 @@ exec 5>&-
 |`sed`|Stream Editor: More powerful than tr as a character translator
 |`awk`|An entire programming language designed for constructing filters. Very powerful and complex.
 
-
+<br><br>
 ### Pipe
 
 - Redirect output of first command to a second with **`|`**
@@ -169,7 +169,7 @@ exec 5>&-
 
 
 
-
+<br><br>
 ## Demoggification (or UUOC: Useless Use of cat)
 > Demoggification on the high level is defined as remuving useless use of `cat`s.
 
@@ -209,7 +209,7 @@ exec 5>&-
     - This should not make much differece for a samll scripts, but will improve performance in larger calculations. 
 
 <br><br>
-<hr><hr>
+<hr>
 
 ### Backup script example
 - Create a file
@@ -241,13 +241,42 @@ exec 5>&-
     #Cleanup
     rm -rf ~/backup
     ```
-<hr><hr>
+<hr>
 
-<br><br>
+<br><br><br><br>
 
 ## Variables
 
 ## What Do Variables Look Like and How Do We Use Them?
+- Bash variables do not have data types
+- All bash variables begins with `$` when referenced
+- When setting a variable, DO NOT preface it with `$`
+
+#### Variable examples
+|||
+|---|---|
+|`SHELL`|SHELL=/bin/bash|
+|`LANG`|LANG=en_US.UTF-8|
+|`MAIL`|MAIL=/var/spool/mail/cloud_user|
+|`PATH`|PATH=/home/cloud_user/.local/bin:/home/cloud_user/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin|
+|`HOSTNAME`|HOSTNAME=fc76e5ff411c.mylabserver.com|
+
+```bash
+if [[ $SHELL =~ ^bash$ ]]
+tnen
+    echo "Do something"
+fi
+```
+### Global vs. Local Variables
+
+
+
+### Introducing Bash Functions
+
+
+
+### Working with Arrays in Bash
+
 
 
 
