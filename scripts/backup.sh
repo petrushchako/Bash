@@ -3,7 +3,7 @@
 # Using Bash to write backup script
 # Write the Script to Back Up the Requested Files
 
-LOGFILE=/home/cloud_user/backup_logs
+LOGFILE="/home/cloud_user/backup_logs"
 
 # Create log entry and direcotry
 echo "Backup starting"
