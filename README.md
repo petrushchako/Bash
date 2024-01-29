@@ -25,34 +25,7 @@ Common Special Characters Used in Bash
 | `\|`|Pipe. Sends the output of one command to the input of another.|
 |`*` or `?`|Globs (aka, wildcards). ? is a wildcard for a single character.|
 
-<br><br><hr><hr>
-### Backup script example
-- Create a file
-    ```shell
-    vim backup.sh
-    ```
-- Add backup script content
-    ```bash
-    #!/bin/bash
-    # Backing up required files
-
-    echo "Creating backup directory"
-    mkdir ~/backup
-    echo 'Copying files'
-    cp /usr/bin/* ~/backup
-    ```
-- Assign execution permission
-    ```shell
-    chmod 744 backup.sh
-    ```
-- Run the script
-    ```shell
-    ./backup.sh
-
-    #Cleanup
-    rm -rf ~/backup
-    ```
-<hr><hr>
+<br><br>
 
 ## Environment varaiables
 
@@ -79,3 +52,74 @@ Common Special Characters Used in Bash
     echo "Creating a folder in $PWD/backup"
     mkdir backup
     ```
+
+<br><br>
+## Implementing and/or lists
+
+- **AND** list **`&&`** 
+
+    A string of commands where the next command is only executed if the previous command exited with **a status of zero**.
+
+- **OR** list **`||`**
+
+    A string of commands where the next command is only executed if the previous command exited with **a non-zero status**.
+
+
+<br>
+
+**Exit statuses**
+- **Zero Exit Status**
+
+    Implies the script or program ran to completion and everything is fine.
+- **Non-Zero Exit Status**
+
+    Results can vary based on the script or program that generated the exit status.
+
+<br>
+<br>
+
+> **To print the exist status of the script**<br>
+> `echo $?`
+
+> **To customize a exit code of your command you can use `exit <number>`**<br>
+>`exit 127`
+
+
+
+
+
+
+
+
+
+
+<hr><hr>
+
+### Backup script example
+- Create a file
+
+    ```shell
+    vim backup.sh
+    ```
+- Add backup script content
+    ```bash
+    #!/bin/bash
+    # Backing up required files
+
+    echo "Creating backup directory" && mkdir ~/backup || echo "Directory already exists"
+    echo 'Copying files' && cp /usr/bin/* ~/backup || echo "Somathing went wrong"
+    echo $?
+    ```
+
+- Assign execution permission
+    ```shell
+    chmod 744 backup.sh
+    ```
+- Run the script
+    ```shell
+    ./backup.sh
+
+    #Cleanup
+    rm -rf ~/backup
+    ```
+<hr><hr>
