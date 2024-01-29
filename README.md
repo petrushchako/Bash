@@ -85,6 +85,21 @@ Common Special Characters Used in Bash
 >`exit 127`
 
 
+<br>
+<br>
+ 
+ ## Redirecting I/O, Utils and Pipes
+||||
+|---|---|---|
+|**`>`**|Redirects to a file|`ls - 1R > directory-tree.txt`|
+|**`>>`**|Redirects to a file, appending data|`echo mylabserver.com >> /etc/hosts`|
+|**`<`**|Redirects file as input for a command|`sort < unsorted_list. txt`|
+
+> NOTE: <br>
+> You can also use both rederection within one command:<br>
+>`sort < unsorted_list.txt > sorted_list.txt`
+
+
 
 
 
