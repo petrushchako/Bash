@@ -8,3 +8,21 @@
 
 > The shabang<br>
 > `#!/bin/sh`
+
+## Working with special characters
+
+Common Special Characters Used in Bash
+|Character | Function |
+|---|---|
+| `" "` or `' '`| Denotes whitespace. Single quotes preserve literal meaning; double quotes allow substitutions.|
+|`$`| Denotes an expansion (for use with variables, command substitution, arithmetic substitution, etc.)|
+| `\ `|Escape character. Used to remove "specialness" from a special character.|
+|`#`|Comments. Anything after this character isn't interpreted.|
+|`=`|Assignment|
+|`[]`or `[[]]`|Test; evaluates for either true or false|
+|`!`| Negation|
+|`>>` `>` `<`|Input/output redirection|
+| `\|`|Pipe. Sends the output of one command to the input of another.|
+|`*` or `?`|Globs (aka, wildcards). ? is a wildcard for a single character.|
+
+### 
