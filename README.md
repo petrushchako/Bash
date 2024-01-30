@@ -133,11 +133,34 @@ echo $var
 exec 5>&-
 ```
 
+### Utility Commands
+|Command|Description|
+|---|---|
+|`sort`|Sorts input and prints a sorted output
+|`uniq`|Removes duplicate lines of data from the input stream
+|`grep`|Searches incoming lines for matching text
+|`fmt`|Receives incoming text and outputs formatted text
+|`tr`|Translates characters
+|`head`/`tail`|Outputs the first/last few lines of a file
+|`sed`|Stream Editor: More powerful than tr as a character translator
+|`awk`|An entire programming language designed for constructing filters. Very powerful and complex.
+
+
+### Pipe
+
+- Redirect output of first command to a second with **`|`**
+
+    ![](img/pipe.png)
 
 
 
 
 
+## Demoggification (or UUOC: Useless Use of cat)
+
+
+
+<br><br>
 <hr><hr>
 
 ### Backup script example
@@ -151,9 +174,12 @@ exec 5>&-
     #!/bin/bash
     # Backing up required files
 
-    echo "Creating backup directory" && mkdir ~/backup || echo "Directory already exists"
-    echo 'Copying files' && cp /usr/bin/* ~/backup || echo "Somathing went wrong"
-    echo $?
+    echo "Creating backup directory" && mkdir ~/backup 2> /dev/null|| echo "Directory already exists"
+    echo 'Copying files' && cp /usr/bin/* ~/backup > log_file 2>$1
+
+    grep -i denied log_file | tail -n 2
+
+    exit 127
     ```
 
 - Assign execution permission
