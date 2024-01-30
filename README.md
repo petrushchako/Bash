@@ -252,7 +252,9 @@ exec 5>&-
 - All bash variables begins with `$` when referenced
 - When setting a variable, DO NOT preface it with `$`
 
-#### Variable examples
+
+### Global vs. Local Variables
+#### Global variable examples
 |||
 |---|---|
 |`SHELL`|SHELL=/bin/bash|
@@ -267,9 +269,8 @@ tnen
     echo "Do something"
 fi
 ```
-### Global vs. Local Variables
 
-
+<br>
 
 ### Introducing Bash Functions
 
