@@ -96,12 +96,42 @@ Common Special Characters Used in Bash
 |**`<`**|Redirects file as input for a command|`sort < unsorted_list. txt`|
 
 > NOTE: <br>
-> You can also use both rederection within one command:<br>
+> You can also use both redirection within one command:<br>
 >`sort < unsorted_list.txt > sorted_list.txt`
 
 
+- **STDOUT**
+
+    The strdout (`1`) is being redirected to a file.
+
+    ![](img/stdout.png)
+
+<br>
+
+- **STDERR**
+
+    Use the `2>` to redirect error output of the command (if any) to the `error_file`
+
+    ![](img/stderr.png)
+
+<br>
+
+- **redirect both**
+
+    ![](img/redirect_output.png)
 
 
+<br><br><br>
+
+**Create your own file descriptor**
+
+```shell
+echo "abc 123" > file
+exec 5<> file
+read -n 3 var <&5
+echo $var
+exec 5>&-
+```
 
 
 
