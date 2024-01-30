@@ -1,7 +1,7 @@
 # Bash
 
 - Basics of bash scripting
-    - [What Is Bash Scripting?](#what-is-bash-scripting?)
+    - [What Is Bash Scripting?](#what-is-bash-scripting)
     - [Working with Special Characters](#working-with-special-characters)
     - [Implementing and/or Lists](#implementing-and-or-lists)
     - [Redirecting I/O, Utility Commands, and Pipes](#redirecting-io-utility-commands-and-pipes)
