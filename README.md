@@ -158,6 +158,29 @@ exec 5>&-
 
 ## Demoggification (or UUOC: Useless Use of cat)
 
+- **Bad practice**
+    ```shell
+    $ cat /etc/passwd | grep rob
+    rob::1000:1000: rob:/home/rob:/bin/bash
+    ```
+- **Good practice**
+    ```shell
+    $ grep rob /etc/passwd
+    rob:x:1000:1000:rob:/home/rob:/bin/bash
+    ```
+    ```shell
+    $ grep rob </etc/passwd
+    rob::1000:1000: rob: /home/rob:/bin/bash
+    ```
+
+- **Bad practice**
+    ```shell
+    $ nc -z www. acloud.guru 80 >&/dev/null
+    ```
+- **Good practice**
+    ```shell
+    $ 2> /dev/null >/dev/tcp/www.acloud.guru/80
+    ```
 
 
 <br><br>
