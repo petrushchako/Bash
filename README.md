@@ -273,8 +273,45 @@ fi
 <br>
 
 ### Introducing Bash Functions
+- Simply put, a function in Bash (or pretty much any programming language) is used to group code in a logical way.
 
+```bash
+#!/bin/bash
+function quit {
+    #Do Cleanup Stuff
+    exit
+    }
 
+# You can use () instead of 'function' declaration
+hello () {
+    #Do Script Initialization Stuff
+    echo Hello!
+    }
+hello
+quit
+```
+
+- Function with parameters from argvar
+> Run this script with `./function.sh Alex 31`
+```bash
+#!/bin/bash
+USER=$1
+AGE=$2
+
+echo "$USER is $AGE years old"
+```
+
+- Overwrite system functions within script
+```bash
+#!/bin/bash
+
+ls (){
+    command ls -alt
+}
+
+ls
+
+```
 
 ### Working with Arrays in Bash
 

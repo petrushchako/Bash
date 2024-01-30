@@ -12,5 +12,12 @@ function hello {
     echo "Hello, $USER!"
     echo "You are $age year old"
     }
+
+ls (){
+    command ls $1
+}
+
+ls "-l" | sort -R
+
 hello
 quit

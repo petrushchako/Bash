@@ -11,13 +11,21 @@ BACKUP_TARGET="/home/$USER/backup"
 
 # Create log entry and direcotry
 echo "Backup starting"
-echo "Creating backup directory" >> $LOGFILE
-mkdir $BACKUP_LOC 2> /dev/null || echo "Directory work_backup exists"
 
+function init{
+
+    echo "Creating backup directory" >> $LOGFILE
+    mkdir $BACKUP_LOC 2> /dev/null || echo "Directory work_backup exists"
+
+    # Clean up the log file for new backup
+    echo "" > $LOGFILE
+}
+
+init
 
 # Copying files
 echo "Backing up files" >> $LOGFILE
-cp -v $BACKUP_LOC $BACKUP_TARGET>> $LOGFILE
+cp -v $BACKUP_LOC $BACKUP_TARGET >> $LOGFILE
 echo "Finished Copying Files" >> $LOGFILE
 
 echo "Backup completed"
