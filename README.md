@@ -1,6 +1,14 @@
 # Bash
 
-## What is the bash scripting?
+- Basics of bash scripting
+    - [What Is Bash Scripting?](#what-is-bash-scripting?)
+    - [Working with Special Characters](#working-with-special-characters)
+    - [Implementing and/or Lists](#implementing-and-or-lists)
+    - [Redirecting I/O, Utility Commands, and Pipes](#redirecting-io-utility-commands-and-pipes)
+    - [Demoggification (or UUOC: Useless Use of cat)](#demoggification-or-uuoc-useless-use-of-cat)
+
+
+## What is bash scripting?
 
 - Bash scripts are like movie scripts: A movie script tells actors what to say at what time, while Bash scripts tell Bash **what to do at what time**.
 - Bash scripts are a **simple text file** containing a series of commands we want to automate running rather than running them.
@@ -9,7 +17,8 @@
 > The shebang<br>
 > `#!/bin/sh`
 
-## Working with special characters
+<br><br>
+## Working with Special Characters
 
 Common Special Characters Used in Bash
 |Character | Function |
@@ -25,8 +34,9 @@ Common Special Characters Used in Bash
 | `\|`|Pipe. Sends the output of one command to the input of another.|
 |`*` or `?`|Globs (aka, wildcards). ? is a wildcard for a single character.|
 
-<br><br>
 
+
+<br><br>
 ## Environment varaiables
 
 - You can access all environment varaiables by simply running `env` command in your terminal
@@ -54,7 +64,7 @@ Common Special Characters Used in Bash
     ```
 
 <br><br>
-## Implementing and/or lists
+## Implementing and/or Lists
 
 - **AND** list **`&&`** 
 
@@ -88,7 +98,7 @@ Common Special Characters Used in Bash
 <br>
 <br>
  
- ## Redirecting I/O, Utils and Pipes
+## Redirecting I/O, Utility Commands, and Pipes
 ||||
 |---|---|---|
 |**`>`**|Redirects to a file|`ls - 1R > directory-tree.txt`|
@@ -228,3 +238,8 @@ exec 5>&-
     rm -rf ~/backup
     ```
 <hr><hr>
+
+<br><br>
+
+## Variables
+
