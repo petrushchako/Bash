@@ -382,7 +382,51 @@ echo "Outside of the function $VAR[1-3]" #ABCDEF
 <br><br><br><br>
 ## Substitutions
 ## Command Substitutions
+Command substitution in Bash allows you to replace a command with its output. This can be achieved using the `$(command)` syntax or the backticks `\```. Here's a short description with examples:
 
+- Using `$(command)`:
+    Description:
+    The $(command) syntax allows you to capture the output of a command and use it in another context, such as assigning it to a variable or incorporating it into a larger command.
+
+    - Example 1: Assign Output to Variable:
+
+        ```bash
+        current_date=$(date)
+        echo "Today is $current_date"
+        ```
+        This captures the current date using the date command and assigns it to the current_date variable.
+
+    - Example 2: Command Substitution in a Command:
+        ```bash
+        files_in_directory=$(ls)
+        echo "Files in the directory: $files_in_directory"
+        ```
+        This captures the list of files in the current directory using ls and incorporates it into the echo command.
+
+- Using Backticks ``:
+    Description:
+    Backticks `` (grave accents) are an older syntax for command substitution. While $(command) is recommended for better readability and nesting, backticks still work.
+
+    - Example 1: Assign Output to Variable:
+
+        ```bash
+        current_time=`date +%H:%M:%S`
+        echo "Current time is $current_time"
+        ```
+
+        This captures the current time using date and assigns it to the current_time variable.
+
+    - Example 2: Command Substitution in a Command:
+
+        ```bash
+        count_files=`ls -l | wc -l`
+        echo "Number of files in the directory: $count_files"
+        ```
+        This captures the count of files in the current directory using ls -l | wc -l and incorporates it into the echo command.
+
+
+> **NOTE:**<br>
+> In modern Bash scripting, it is recommended to use $(command) for command substitution due to improved readability and nesting capabilities.
 
 
 ## Process Substitutions
