@@ -12,6 +12,11 @@
     - [Introducing Bash Functions](#introducing-bash-functions)
     - [Working with Arrays in Bash](#working-with-arrays-in-bash)
 
+- **Substitutions**
+    - [Command Substitutions](#command-substitutions)
+    - [Process Substitutions](#process-substitutions)
+
+
 ## What is bash scripting?
 
 - Bash scripts are like movie scripts: A movie script tells actors what to say at what time, while Bash scripts tell Bash **what to do at what time**.
@@ -374,13 +379,10 @@ echo "Outside of the function $VAR[1-3]" #ABCDEF
     #4 5 6 7
     ```
 
+<br><br><br><br>
+## Substitutions
+## Command Substitutions
 
 
 
-## Introducing Bash Functions
-
-
-
-
-
-## Working with Arrays in Bash
+## Process Substitutions

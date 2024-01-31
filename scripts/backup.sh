@@ -4,9 +4,9 @@
 # Write the Script to Back Up the Requested Files
 
 # $USER so the script activity can be loged for any user
-LOGFILE="/home/$USER/backup_logs"
+LOGFILE="/home/cloud_user/backup_logs"
 BACKUP_LOC="/usr/bin/*"
-BACKUP_TARGET="/home/$USER/backup"
+BACKUP_TARGET="/home/cloud_user/backup"
 
 
 # Create log entry and direcotry
