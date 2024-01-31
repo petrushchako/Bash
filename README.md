@@ -333,7 +333,46 @@ echo "Outside of the function $VAR[1-3]" #ABCDEF
 
 ## Working with Arrays in Bash
 
+- Initialization
 
+    ```bash
+    NUMBERS=(1 2 3 4 5)
+    ```
+
+- Array operations
+    ```bash
+    #Print first element
+    echo $NUMBERS
+    #1
+
+    #Print element at index 3
+    echo ${NUMBERS[2]}
+    #3
+
+    #Print all content of the array
+    echo ${NUMBERS[@]}
+    # 1 2 3 4 5
+
+    #Checkthe length of the array 
+    echo ${#NUMBERS[@]}
+    5
+
+    #Add elements 
+    NUMBERS+=(6 7)
+    # 1 2 3 4 5 6 7
+
+    #Print all indexes available within the array
+    echo ${!NUMBERS[@]}
+    # 0 1 2 3 4 5 6
+
+    #Returns the range of values from the array by providing starting index, and number of values (inclusive)
+    echo ${NUMBERS[@]:2:3}
+    #3 4 5
+
+    # print from index (starting) until the end of array
+    echo ${NUMBERS[@]:3}
+    #4 5 6 7
+    ```
 
 
 
