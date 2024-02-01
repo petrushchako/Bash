@@ -384,7 +384,7 @@ echo "Outside of the function $VAR[1-3]" #ABCDEF
 ## Command Substitutions
 Command substitution in Bash allows you to replace a command with its output. This can be achieved using the `$(command)` syntax or the backticks `\```. Here's a short description with examples:
 
-- U**sing `$(command)`**:
+- **Using `$(command)`**:
     
     The $(command) syntax allows you to capture the output of a command and use it in another context, such as assigning it to a variable or incorporating it into a larger command.
 
@@ -432,3 +432,42 @@ Command substitution in Bash allows you to replace a command with its output. Th
 
 <br><br>
 ## Process Substitutions
+
+- Process substitution is a feature in Bash that allows you to use the output of a command or a sequence of commands as if it were a file. It's a convenient way to pass the output of a command directly as an argument to another command or process.
+
+### Syntax
+
+Process substitution uses the following syntax:
+
+```bash
+<(command)
+```
+or
+
+```bash
+>(command)
+```
+
+The `<()` syntax is used for command substitution, while `>()` is used for command substitution with output redirection.
+
+- Example 1: Command Substitution
+
+    In this example, we'll use process substitution to pass the sorted output of a command to another command:
+
+    ```bash
+    diff <(sort file1) <(sort file2)
+    ```
+    Here, `<(sort file1)` and `<(sort file2)` are replaced with file-like references to the sorted outputs of sort file1 and sort file2, respectively. The diff command then compares the two sorted outputs.
+
+<br><br>
+- Example 2: Command Substitution with Output Redirection
+
+    You can also use process substitution with output redirection. In this example, we'll redirect the output of a command to a file using process substitution:
+
+    ```bash
+    echo >(date) > output.txt
+    ```
+    Here, `>(date)` is replaced with a file-like reference to the output of the date command, and the echo command writes that reference to output.txt.
+<br><br>
+> **Note** <br>
+> Keep in mind that process substitution is a feature specific to Bash and may not be available in other shells. It provides a convenient and concise way to work with command outputs in scenarios where traditional command substitution with backticks or `$()` may not be suitable.
