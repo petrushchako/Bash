@@ -16,6 +16,11 @@
     - [Command Substitutions](#command-substitutions)
     - [Process Substitutions](#process-substitutions)
 
+- **Flow Control**
+    - [Using the for Loop](#using-the-for-loop)
+    - [Using the while or until Loop](#using-the-while-or-until-loop)
+    - [Handling Signals and Traps](#handling-signals-and-traps)
+    - [Using Exit Status, Tests, and Builtins](#using-exit-status-tests-and-builtins)
 
 ## What is bash scripting?
 
@@ -471,3 +476,38 @@ The `<()` syntax is used for command substitution, while `>()` is used for comma
 <br><br>
 > **Note** <br>
 > Keep in mind that process substitution is a feature specific to Bash and may not be available in other shells. It provides a convenient and concise way to work with command outputs in scenarios where traditional command substitution with backticks or `$()` may not be suitable.
+
+
+## Flow Controls
+
+### Using the for Loop
+
+```bash
+#!/bin/bash
+for i in $(ls); do
+    echo item: $i
+done
+```
+
+```bash
+BACKUP_LOC="/home/$USER/work"
+BACKUP_TARGET="/home/$USER/work_backup"
+LOGFILE="/home/$USER/backup_log"
+
+echo "Copying Files" >> backup_log
+
+cd $BACKUP_LOC
+for i in $ (ls); do
+    cp -V $1 $BACKUP_TARGET/$i-backup >> $LOGFILE 2>&1
+done
+```
+### Using the while or until Loop
+
+
+
+### Handling Signals and Traps
+
+
+
+### Using Exit Status, Tests, and Builtins
+

@@ -13,12 +13,11 @@ BACKUP_TARGET="/home/cloud_user/backup"
 echo "Backup starting"
 
 function init{
-
-    echo "Creating backup directory" >> $LOGFILE
+    echo "$(date): Creating backup directory" >> $LOGFILE
     mkdir $BACKUP_LOC 2> /dev/null || echo "Directory work_backup exists"
 
     # Clean up the log file for new backup
-    echo "" > $LOGFILE
+    echo " " > $LOGFILE
 }
 
 init
@@ -26,7 +25,7 @@ init
 # Copying files
 echo "Backing up files" >> $LOGFILE
 cp -v $BACKUP_LOC $BACKUP_TARGET >> $LOGFILE
-echo "Finished Copying Files" >> $LOGFILE
+echo -e "\n\n$(date +"%D %T")\n Finished Copying Files" >> $LOGFILE
 
 echo "Backup completed"
 
