@@ -503,8 +503,31 @@ done
 ```
 ### Using the while or until Loop
 
+- `while`
 
+    Will execute **while** condition is TRUE
 
+    ```bash
+    #!/bin/bash
+    COUNTER=0
+    while [ $COUNTER -lt 10 ]; do
+        echo "The counter is $COUNTER"
+        let COUNTER=COUNTER+1
+    done
+    ```
+
+- `until`
+
+    Will execute **until** test-command returns TRUE, or in other words, while condition evaluates to FALSE
+  ```bash
+    #!/bin/bash
+    COUNTER=20
+    until [ $COUNTER -lt 10 ]; do
+        echo The counter is $COUNTER
+        let COUNTER-=1
+    done
+  ```
+  In example above, loop will run until `$COUNTER eq 9`
 ### Handling Signals and Traps
 
 
