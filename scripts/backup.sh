@@ -12,12 +12,24 @@ BACKUP_TARGET="/home/cloud_user/backup"
 # Create log entry and direcotry
 echo "Backup starting"
 
-function init{
-    echo "$(date): Creating backup directory" >> $LOGFILE
-    mkdir $BACKUP_LOC 2> /dev/null || echo "Directory work_backup exists"
+function init {
+    if [ -d $BACKUP_TARGET]
+        then    
+            echo "Directory work_backup exists"
+            echo "$(date +"%x %r %Z")" >> $LOGFILE
+            return 1
+        else
+            echo "$(date): Creating backup directory" >> $LOGFILE
+            mkdir $BACKUP_LOC 2> /dev/null
+            return 0
+        fi
+
+
+    # echo "$(date): Creating backup directory" >> $LOGFILE
+    # mkdir $BACKUP_LOC 2> /dev/null || echo "Directory work_backup exists"
 
     # Clean up the log file for new backup
-    echo "$(date +"%x %r %Z")" >> $LOGFILE
+    # echo "$(date +"%x %r %Z")" >> $LOGFILE
 }
 
 tail () {
