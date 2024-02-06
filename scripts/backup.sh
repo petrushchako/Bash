@@ -17,16 +17,30 @@ function init{
     mkdir $BACKUP_LOC 2> /dev/null || echo "Directory work_backup exists"
 
     # Clean up the log file for new backup
-    echo " " > $LOGFILE
+    echo "$(date +"%x %r %Z")" >> $LOGFILE
+}
+
+tail () {
+    command tail -n $1
+}
+
+cleanup () {
+    rm -rf $BACKUP_TARGET
+    echo "RECEIVED CTRL+C" >> /home/$USER/$LOGFILE
 }
 
 init
+trap cleanup SIGING # trigger clena in case of CRTL + C (SIGINT) is used to terminate backup. 
 
 # Copying files
 echo "Backing up files" >> $LOGFILE
-cp -v $BACKUP_LOC $BACKUP_TARGET >> $LOGFILE
-echo -e "\n\n$(date +"%D %T")\n Finished Copying Files" >> $LOGFILE
+cd $BACKUP_LOC
+for i in $(ls); do
+    cp -v "$i" $BACKUP_TARGET/"$i"-backup >> /home/$USER/$LOGFILE 2>&1
 
+done
+
+echo -e "\n\n$(date +"%D %T")\n Finished Copying Files" >> $LOGFILE
 echo "Backup completed"
 
 # After creating this file, add authorization

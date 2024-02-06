@@ -541,6 +541,10 @@ done
     > SIGUSR1
 
 - Script below is example of signal trap (SIGINT)
+
+ Note: 
+ - **SIGINT** does not always behave this way. In general, though, this behaviour is accurate. 
+ - You cannot trap **SIGKILL**. Much like pulling the plug from a server is a last resort, **SIGKILL** is special in that it cannot be trapped. If you must resort to **SIGKILL**, something else has gone terribly wrong.  
 ```bash
 #!/bin/bash
 ctrlc=0
@@ -554,6 +558,8 @@ function trap_ctrlc {
         echo "I warned you... "
     else
         echo "Throwing in the towel. "
+        exit
+    fi
 }
 
 trap trap_ctrlc SIGINT
