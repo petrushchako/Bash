@@ -573,3 +573,30 @@ done
 
 ### Using Exit Status, Tests, and Builtins
 
+- **Testin with Parentheses**
+
+    - The `if` statement will act on the exit status of the list of commands
+    - Parentheses let you run the command in the sub-shell, rather than the shell you are currently in.
+    - `then` statement will run if the `if` statement returns true (in this case an exit status of zero).
+    - `else` statement will run if the `if` statement returns false (in this case, an exit status of non-zero).
+
+    ```bash
+    #!/bin/bash
+
+    if (list of commands)
+    then
+        command1
+    else
+        command2
+    fi
+    ```
+
+- **Testing with square brackets**
+
+    - If your test condition does not return exit status (i.e. comparing two varaibles), you then use saure brackets `[ ]`
+
+    ```bash
+    if [ $VAR1 -eq $VAR2 ]
+    then . . . 
+        . . .
+    ```
