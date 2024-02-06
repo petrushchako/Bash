@@ -10,6 +10,7 @@ function trap_ctrlc {
         echo "I warned you... "
     else
         echo "Throwing in the towel. "
+        exit
     fi
 }
 
