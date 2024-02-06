@@ -530,7 +530,40 @@ done
   In example above, loop will run until `$COUNTER eq 9`
 ### Handling Signals and Traps
 
+- **Signals**
+    
+    Programs in Linux are managed partially by **signals** from kernel.
 
+    > **Most common signals :**<br>
+    > SIGKILL<br>
+    > SIGINT<br>
+    > SIGTERM<br>
+    > SIGUSR1
+
+- Script below is example of signal trap (SIGINT)
+```bash
+#!/bin/bash
+ctrlc=0
+
+function trap_ctrlc {
+    let ctrlc++
+    echo
+    if [[ $ctrlc == 1 ]]; then
+        echo "Stop doing that. "
+    elif [[ $ctrlc == 2 ]]; then
+        echo "I warned you... "
+    else
+        echo "Throwing in the towel. "
+}
+
+trap trap_ctrlc SIGINT
+
+while true
+do
+    echo Sleeping. ..
+    sleep 10
+done
+```
 
 ### Using Exit Status, Tests, and Builtins
 
