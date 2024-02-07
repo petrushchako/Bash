@@ -3,8 +3,15 @@
 # Using Bash to write backup script
 # Write the Script to Back Up the Requested Files
 
+if [ -z $1 ]
+then    
+    echo "You need to suply the name of the log file"
+    exit 255
+fi
+
+
 # $USER so the script activity can be loged for any user
-LOGFILE="/home/cloud_user/backup_logs"
+LOGFILE=$1
 BACKUP_LOC="/usr/bin/*"
 BACKUP_TARGET="/home/cloud_user/backup"
 
