@@ -22,6 +22,18 @@
     - [Handling Signals and Traps](#handling-signals-and-traps)
     - [Using Exit Status, Tests, and Builtins](#using-exit-status-tests-and-builtins)
 
+- **Learn about Heredocs**
+    - [What is Heredoc?](#what-is-a-heredoc)
+    - [What is Herestring?](#what-is-a-herestring)
+
+- **Debugging Bash Scripts**
+    - [Using Bash Builtins to Troubleshoot Problems: Part 1](#using-bash-builtins-to-troubleshoot-problems-part-1)
+    - [Using Bash Builtins to Troubleshoot Problems: Part 2](#using-bash-builtins-to-troubleshoot-problems-part-2)
+
+- **Quick and Dirty Regex in Bash**
+    - [What is Regex?](#what-is-regex)
+    - [How Does Bash Regex Work?](#how-does-bash-regex-work)
+
 ## What is bash scripting?
 
 - Bash scripts are like movie scripts: A movie script tells actors what to say at what time, while Bash scripts tell Bash **what to do at what time**.
@@ -610,5 +622,35 @@ done
     - Even builtins have man pages
 
         `man BUILTIN` will bring up the builtin man page and give you more information about any specific command. 
-        
-         
+
+
+
+<br><br><br>
+
+## Learning about Heredocs
+### What Is a Heredoc?
+
+
+
+### What Is a Herestring?
+
+
+
+
+## Debugging Bash Scripts
+### Using Bash Builtins to Troubleshoot Problems: Part 1
+
+
+
+### Using Bash Builtins to Troubleshoot Problems: Part 2
+
+
+
+
+## Quick and Dirty Regex in Bash
+### What Is Regex?
+
+
+
+### How Does Bash Regex Work?
+
