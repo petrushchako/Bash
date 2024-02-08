@@ -600,3 +600,15 @@ done
     then . . . 
         . . .
     ```
+
+- **Builtins**
+
+    - There are several Bash builtins
+        
+        While some of these may be familiar, including those we've covered so far in this course, there are many more Bash builtins.
+
+    - Even builtins have man pages
+
+        `man BUILTIN` will bring up the builtin man page and give you more information about any specific command. 
+        
+         
