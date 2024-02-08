@@ -7,6 +7,8 @@ if [ -z $1 ]
 then    
     echo "You need to suply the name of the log file"
     exit 255
+else
+    echo "Backup process log file: $1"
 fi
 
 
