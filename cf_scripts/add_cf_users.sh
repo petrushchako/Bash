@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Run script with
+# ./add_cf_users.sh usernames.txt my_organization my_space
+
 # Check if CF CLI is installed
 if ! command -v cf &> /dev/null; then
     echo "Error: CF CLI is not installed. Please install it and try again."
