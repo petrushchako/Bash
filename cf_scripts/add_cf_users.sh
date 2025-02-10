@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# File to use with script:
+#  abc.txt
+#    user1@example.com
+#    user2@example.com
+#    user3@example.com
+
+# Usage: script.sh -f <user_file> -o <organization> -s <space>
+
 # Function to display usage instructions
 usage() {
     echo "Usage: $0 -f <user_file> -o <organization> -s <space>"
