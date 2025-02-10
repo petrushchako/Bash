@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Run script with
-# ./add_cf_users.sh usernames.txt my_organization my_space
+# Function to display usage instructions
+usage() {
+    echo "Usage: $0 -f <user_file> -o <organization> -s <space>"
+    exit 1
+}
 
 # Check if CF CLI is installed
 if ! command -v cf &> /dev/null; then
@@ -15,20 +18,20 @@ if ! cf target &> /dev/null; then
     exit 1
 fi
 
-# Check if the input file and organization/space are provided
-if [ $# -ne 3 ]; then
-    echo "Usage: $0 <user_file> <organization> <space>"
-    exit 1
+# Parse command-line arguments
+while getopts "f:o:s:" opt; do
+    case "$opt" in
+        f) user_file="$OPTARG" ;;
+        o) organization="$OPTARG" ;;
+        s) space="$OPTARG" ;;
+        *) usage ;;
+    esac
+done
+
+# Ensure all required parameters are provided
+if [ -z "$user_file" ] || [ -z "$organization" ] || [ -z "$space" ]; then
+    usage
 fi
-
-# Input file containing usernames (one username per line)
-user_file=$1
-
-# Organization in Cloud Foundry
-organization=$2
-
-# Space in Cloud Foundry
-space=$3
 
 # Check if the input file exists
 if [ ! -f "$user_file" ]; then
@@ -50,9 +53,7 @@ fi
 
 # Loop through each username in the input file
 while IFS= read -r username; do
-    # Check if the username is not empty
     if [ -n "$username" ]; then
-        # Assign a specific role to the user in the space
         cf set-space-role "$username" "$organization" "$space" SpaceDeveloper
         echo "User '$username' added as SpaceDeveloper to space '$space' in organization '$organization'."
     fi
