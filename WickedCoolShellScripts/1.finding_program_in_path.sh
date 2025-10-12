@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# inpath--Verifies that a specified program is either valid as is
+# or can be found in the user's PATH directory list
+
+in_path() {
+    # Given a command and the PATH, tries to find the command.
+    # Result 0 if found and executable; 1 if not.
+    # Note that this remporarily modifies the IFS (internal field separator) but restores it upon completion.
+
+    cmd=$1  ourpath=$2  result=1
+    oldIFS=$IFS IFS=":"
+
+    for directory in $ourpath
+    do 
+        if [ -x $directory/$cmd ]; then
+            result=0    # If we'are here, we found the command
+        fi
+    done IFS=$oldIFS
+    return $result
+}
+
