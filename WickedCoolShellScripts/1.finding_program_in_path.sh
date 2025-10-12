@@ -3,7 +3,8 @@
 # inpath--Verifies that a specified program is either valid as is
 # or can be found in the user's PATH directory list
 
-in_path() {
+in_path()
+{
     # Given a command and the PATH, tries to find the command.
     # Result 0 if found and executable; 1 if not.
     # Note that this remporarily modifies the IFS (internal field separator) but restores it upon completion.
@@ -20,3 +21,17 @@ in_path() {
     return $result
 }
 
+checkForCmdInPath()
+{
+    var=$1
+
+    if [ "$var" != "" ]; then
+        if [ "${var:0:1}" = "/"]; then
+            if [ ! -x $var ]; then
+                return 1
+            fi
+        elif ! in_path $var "$PATH"; then
+            return 2
+        fi
+    fi
+}
