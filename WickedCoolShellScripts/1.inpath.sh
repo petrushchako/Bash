@@ -17,7 +17,8 @@ in_path()
         if [ -x $directory/$cmd ]; then
             result=0    # If we'are here, we found the command
         fi
-    done IFS=$oldIFS
+    done 
+    IFS=$oldIFS
     return $result
 }
 
@@ -26,7 +27,7 @@ checkForCmdInPath()
     var=$1
 
     if [ "$var" != "" ]; then
-        if [ "${var:0:1}" = "/"]; then
+        if [ "${var:0:1}" = "/" ]; then
             if [ ! -x $var ]; then
                 return 1
             fi
