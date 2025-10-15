@@ -3,10 +3,10 @@
 ### Table of contents
 
 |                                               |                                                 |                                |
-|:----------------------------------------------:|-------------------------------------------------|--------------------------------|
+|:---------------------------------------------:|-------------------------------------------------|--------------------------------|
 | **THE MISSING CODE LIBRARY**                  |                                                 |                                |
-|**1**                                          | Finding Program in the PATH                     |                                |
-|**2**                                          | Validating Input: Alphanumeric Only             |                                |
+|**1**                                          | Finding Program in the PATH                     | `1.inpath.sh`                  |
+|**2**                                          | Validating Input: Alphanumeric Only             | `2.validAlphaPath.sh`          |
 |**3**                                          | Normalizing Date Formats                        |                                |
 |**4**                                          | Presenting Large Numbers Attractively           |                                |
 |**5**                                          | Validating Integer Input                        |                                |
