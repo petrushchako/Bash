@@ -23,3 +23,17 @@ nothNumToName()
     esac
     return 0
 }
+
+# BEGIN MAIN SCRIPT--DELETE OR COMMENT OUT EVERYTHING BELOW THIS LINE IF YOU WANT TO INCLUDE THIS IN OTHER SCRIPTS.
+#  YOU WANT TO INCLUDE THIS IN OTHER SCRIPTS.
+#====================================================================
+# Input vlaidation
+if [ $# -ne 3 ] ; then # Expect exactly three argument
+    echo "Usage: $0 month day year" >&2
+    echo "Formats are August 3 1962 and 8 3 1962" >&2
+    exit 1
+fi
+if [ $3 -le 99 ] ; then
+    echo "$0: expected 4-digit year value" >&2
+    exit 1
+fi
