@@ -16,4 +16,18 @@ nicenumber()
         # There is a fractional part, so let's include it.
         result="${DD:= '.'}$decimal"
     fi
+
+    thousands=$integer
+
+    while [ $thousands -gt 999 ] ; do
+        remainder=$(($thousands % 1000))    # three least significant digits
+
+        # We need 'remainder' to be three digits. Do we need to add zero?
+        while [ ${#remainder} -lt 3 ] ; do # Force leading zeros
+            remainder="0$remainder"
+        done
+
+        result="${TD:=','}$remainder${result}" # Build right to left
+        thousands=$(($thousands / 1000 )) # To left of remainder, if any
+    done
 }
