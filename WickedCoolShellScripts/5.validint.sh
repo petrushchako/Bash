@@ -9,7 +9,8 @@ validint()
 
     number="$1";  min="$2";  max="$3"
 
-    if [ -z $number ] ; then
+    # -z test means “string length is zero”
+    if [ -z $number ] ; then 
         echo "You didn't enter anything. Please enter a number" >&2
         return 1
     fi
@@ -19,5 +20,15 @@ validint()
         testvalue="${number#?}" #grab all but the first character to test
     else
         testvalue="$number"
+    fi
+
+    # Create a version of the number that has no digits for testing.
+    nodigits="$(echo $testvalue | sed 's/[[:digit:]]//g')"
+
+    # Check for nondigit characters
+    # ! -z means “string length is not zero”
+    if [ ! -z $nodigits ] ; then
+        echo "Invalid number format! Only digits, no commas, spaces, etc" >&2
+        return 1
     fi
 }
