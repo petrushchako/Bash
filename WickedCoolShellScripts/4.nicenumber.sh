@@ -30,4 +30,32 @@ nicenumber()
         result="${TD:=','}$remainder${result}" # Build right to left
         thousands=$(($thousands / 1000 )) # To left of remainder, if any
     done
+
+    nicenum="${thousands}${result}"
+    if [ ! -z $2 ] ; then
+        echo $nicenum
+    fi
 }
+
+DD="." # Decimal point delimiter, to separate whole andfractional values
+TD="," # Thousand delimiter, to separate ever three digits
+
+while getopts "d:t:" opt; do
+    case $opt in
+        d ) DD=$OPTARG  ;;
+        t ) TD=$OPTARG  ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+# Input validation
+if [ $# -eq 0 ] ; then
+    echo "Usage: $(basename $0) [-d c] [-t c] number
+    echo "  -d specifies the decimal point delimiter"
+    echo "  -t specifies the thousands delimiter"
+    exit 0
+fi
+
+nucenum $1 1    # Second arg forces nicenum to echo output
+
+exit 0
