@@ -50,12 +50,12 @@ shift $(($OPTIND - 1))
 
 # Input validation
 if [ $# -eq 0 ] ; then
-    echo "Usage: $(basename $0) [-d c] [-t c] number
+    echo "Usage: $(basename $0) [-d c] [-t c] number"
     echo "  -d specifies the decimal point delimiter"
     echo "  -t specifies the thousands delimiter"
     exit 0
 fi
 
-nucenum $1 1    # Second arg forces nicenum to echo output
+nicenumber $1 1    # Second arg forces nicenum to echo output
 
 exit 0
