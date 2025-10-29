@@ -218,6 +218,9 @@ Bash treats everything as **strings**, but supports numeric arithmetic.
 ```bash
 a=5
 b=3
+
+# In Bash, the double parentheses with $ are used for arithmetic expansion.
+# It allows you to perform integer math operations directly inside your script.
 sum=$((a + b))
 echo "$a + $b = $sum"
 ```
@@ -540,4 +543,176 @@ echo "=== System Health Check ==="
 check_disk
 check_mem
 echo "Done."
+```
+
+<br><br><br>
+---
+
+## Arrays
+### 1. Creating Arrays
+**Indexed array (most common):**
+
+```bash
+fruits=("apple" "banana" "cherry")
+```
+
+**Add elements manually:**
+
+```bash
+fruits[3]="orange"
+```
+
+**Or declare first, then assign:**
+
+```bash
+declare -a fruits
+fruits[0]="apple"
+fruits[1]="banana"
+```
+
+### 2. Accessing Elements
+```bash
+echo "${fruits[0]}"   # apple
+echo "${fruits[2]}"   # cherry
+```
+
+> Always use **double quotes** when expanding — this prevents word-splitting errors.
+
+### 3. Getting All Elements
+```bash
+echo "${fruits[@]}"   # apple banana cherry orange
+```
+
+* `@` means “all elements”.
+* You can also use `*`, but `@` is safer when values contain spaces.
+
+### 4. Number of Elements
+```bash
+echo "${#fruits[@]}"   # 4
+```
+
+### 5. Get All Indices
+```bash
+echo "${!fruits[@]}"   # 0 1 2 3
+```
+
+Useful when you want to iterate with indexes.
+
+### 6. Modifying Arrays
+**Append elements:**
+```bash
+fruits+=("grape" "melon")
+```
+
+**Remove an element:**
+```bash
+unset 'fruits[1]'   # removes banana
+```
+
+**Delete entire array:**
+```bash
+unset fruits
+```
+
+### 7. Iterating Over Arrays
+Here’s where it gets interesting.
+
+#### a) **Loop through values**
+```bash
+for fruit in "${fruits[@]}"; do
+  echo "I like $fruit"
+done
+```
+
+> Always quote `"${fruits[@]}"` — otherwise words with spaces split incorrectly.
+
+#### b) **Loop through indices**
+```bash
+for i in "${!fruits[@]}"; do
+  echo "Index $i: ${fruits[$i]}"
+done
+```
+
+> This is helpful when you need to modify items by index.
+
+#### c) **C-style loop**
+```bash
+for ((i=0; i<${#fruits[@]}; i++)); do
+  echo "${fruits[$i]}"
+done
+```
+
+> Similar to loops in C, Python, or JavaScript — uses arithmetic syntax `(( ))`.
+
+### 8. Slicing (partial access)
+You can grab a slice of an array just like strings.
+```bash
+echo "${fruits[@]:1:2}"   # prints elements from index 1 (banana) up to 2 items
+```
+
+### 9. Copying Arrays
+```bash
+new_fruits=("${fruits[@]}")
+```
+
+### 10. Checking if a value exists
+```bash
+value="apple"
+for item in "${fruits[@]}"; do
+  if [[ $item == "$value" ]]; then
+    echo "Found!"
+  fi
+done
+```
+
+Or more compact (using pattern matching):
+```bash
+[[ " ${fruits[@]} " =~ " $value " ]] && echo "Found!"
+```
+
+### 11. Associative Arrays (key-value pairs)
+Bash 4+ supports **associative arrays** — like dictionaries.
+
+```bash
+declare -A capitals
+capitals=([France]="Paris" [Italy]="Rome" [Japan]="Tokyo")
+
+echo "${capitals[France]}"   # Paris
+```
+
+**Loop through keys:**
+```bash
+for country in "${!capitals[@]}"; do
+  echo "$country → ${capitals[$country]}"
+done
+```
+
+### Pro Tips
+
+| Tip                      | Description                                                        |
+| ------------------------ | ------------------------------------------------------------------ |
+| Always use quotes        | `"${array[@]}"` preserves each element even with spaces.           |
+| Use `${!array[@]}`       | Gets indices — useful for safe indexed iteration.                  |
+| Bash 4+ only             | Associative arrays require Bash 4 or later.                        |
+| Arrays persist in memory | If you reassign `array=("a")`, all previous elements are replaced. |
+
+### Example: Combining everything
+
+```bash
+#!/bin/bash
+
+fruits=("apple" "banana" "cherry" "kiwi")
+
+echo "All fruits: ${fruits[@]}"
+echo "Total: ${#fruits[@]}"
+
+for i in "${!fruits[@]}"; do
+  echo "Fruit $i: ${fruits[$i]}"
+done
+
+# Add a new one
+fruits+=("mango")
+
+# Check existence
+[[ " ${fruits[@]} " =~ " mango " ]] && echo "Mango found!"
 ```
