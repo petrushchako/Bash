@@ -139,3 +139,405 @@
 |**102**                                        | Bulk-Renaming Files                             |                                |
 |**103**                                        | Bulk-Running Commands on Multiprcessor Machines |                                |
 |**104**                                        | Finding the Phase of the Moon                   |                                |
+
+
+
+
+<hr>
+
+# Bash Scripting Fundamentals
+
+## 1. What Is Bash?
+**Bash (Bourne Again SHell)** is a command interpreter and scripting language for Unix/Linux systems.  
+It supports:
+- Command execution  
+- Variables and arithmetic  
+- Conditionals and loops  
+- Functions and error handling  
+- Text processing with pipes, redirections, and tools (`grep`, `sed`, `awk`, etc.)
+
+## 2. Running Bash Scripts
+### Create and run a script
+```bash
+#!/usr/bin/env bash
+echo "Hello world"
+````
+
+Save as `myscript.sh`, then:
+
+```bash
+chmod +x myscript.sh
+./myscript.sh
+```
+
+You can also run:
+
+```bash
+bash myscript.sh
+```
+
+The `#!/usr/bin/env bash` line is the **shebang** — it tells the system which interpreter to use.
+
+---
+
+## 3. Variables
+### Declaring variables
+
+```bash
+name="Alice"
+age=25
+```
+
+> No spaces around `=`!
+
+### Accessing variables
+```bash
+echo "Name: $name, Age: $age"
+```
+
+### Read-only variables
+```bash
+readonly company="TechCorp"
+```
+
+### Environment variables
+```bash
+export PATH="$PATH:/opt/bin"
+```
+
+### Reading user input
+```bash
+read -p "Enter your name: " username
+echo "Hi $username!"
+```
+
+## 4. Data Types (Primitives)
+Bash treats everything as **strings**, but supports numeric arithmetic.
+
+### Integer arithmetic
+```bash
+a=5
+b=3
+sum=$((a + b))
+echo "$a + $b = $sum"
+```
+
+### String operations
+```bash
+greet="hello"
+echo "${greet^^}"   # HELLO (uppercase)
+echo "${greet,,}"   # hello (lowercase)
+echo "${#greet}"    # string length = 5
+```
+
+<br>
+
+## 5. Arrays
+### Create an array
+```bash
+fruits=("apple" "banana" "orange")
+```
+
+### Access elements
+```bash
+echo "${fruits[0]}"   # apple
+echo "${fruits[@]}"   # all elements
+```
+
+### Add or modify
+```bash
+fruits+=("grape")
+fruits[1]="kiwi"
+```
+
+### Array length
+```bash
+echo "${#fruits[@]}"
+```
+
+### Iterate over array
+```bash
+for item in "${fruits[@]}"; do
+  echo "$item"
+done
+```
+
+<br>
+
+## 6. Conditionals
+### Basic if/else
+```bash
+x=10
+
+if [ $x -gt 5 ]; then
+  echo "x is greater than 5"
+else
+  echo "x is 5 or less"
+fi
+```
+
+### String comparisons
+```bash
+str="hello"
+if [ "$str" = "hello" ]; then
+  echo "Match"
+fi
+```
+
+### File tests
+
+```bash
+if [ -f /etc/passwd ]; then
+  echo "File exists"
+fi
+
+if [ -d /var/log ]; then
+  echo "Directory exists"
+fi
+```
+
+### Common file test flags
+
+| Test | Meaning                    |
+| ---- | -------------------------- |
+| `-f` | File exists and is regular |
+| `-d` | Directory exists           |
+| `-e` | File or directory exists   |
+| `-r` | File is readable           |
+| `-w` | File is writable           |
+| `-x` | File is executable         |
+
+
+## 7. Loops
+### For loop
+
+```bash
+for i in 1 2 3 4 5; do
+  echo "Number: $i"
+done
+```
+
+With brace expansion:
+
+```bash
+for i in {1..5}; do
+  echo "Loop $i"
+done
+```
+
+Iterate files:
+
+```bash
+for file in /etc/*.conf; do
+  echo "Found $file"
+done
+```
+
+### While loop
+
+```bash
+count=1
+while [ $count -le 5 ]; do
+  echo "Count: $count"
+  ((count++))
+done
+```
+
+### Until loop
+```bash
+num=0
+until [ $num -ge 3 ]; do
+  echo "num is $num"
+  ((num++))
+done
+```
+
+## 8. Functions
+### Declaring a function
+
+```bash
+greet() {
+  echo "Hello, $1!"
+}
+```
+
+### Calling a function
+```bash
+greet "Alice"
+```
+
+### Returning status codes
+```bash
+check_file() {
+  [ -f "$1" ]
+}
+
+if check_file /etc/passwd; then
+  echo "File exists"
+else
+  echo "Missing file"
+fi
+```
+
+### Returning values (via echo)
+```bash
+sum() {
+  echo $(( $1 + $2 ))
+}
+
+result=$(sum 5 3)
+echo "Sum = $result"
+```
+
+## 9. Exit Codes and Error Handling
+* Each command returns an **exit code** (`0` = success, nonzero = failure).
+* You can view the last command’s exit code with `$?`.
+
+```bash
+ls /notfound
+echo "Exit code: $?"
+```
+
+### Stop script on error
+```bash
+set -e
+```
+
+### Common safe mode
+```bash
+set -euo pipefail
+```
+
+* `-e`: exit on error
+* `-u`: error on undefined variable
+* `-o pipefail`: pipeline fails if any command fails
+
+## 10. Input and Output Redirection
+### Redirect output
+
+```bash
+command > file.txt     # stdout to file
+command >> file.txt    # append
+command 2> errors.txt  # stderr to file
+```
+
+### Redirect both stdout and stderr
+```bash
+command &> output.log
+```
+
+### Pipes
+```bash
+ps aux | grep nginx | wc -l
+```
+
+## 11. Command Substitution
+Run a command and capture its output:
+```bash
+today=$(date +%F)
+echo "Today's date is $today"
+```
+
+## 12. Case Statements
+Simpler than multiple `if` statements:
+```bash
+read -p "Enter option (start|stop): " action
+
+case $action in
+  start)
+    echo "Starting service..."
+    ;;
+  stop)
+    echo "Stopping service..."
+    ;;
+  *)
+    echo "Unknown action: $action"
+    ;;
+esac
+```
+
+## 13. Script Arguments (`$1`, `$2`, `$@`)
+
+```bash
+echo "Script name: $0"
+echo "First arg: $1"
+echo "All args: $@"
+```
+
+Loop through arguments:
+
+```bash
+for arg in "$@"; do
+  echo "Arg: $arg"
+done
+```
+
+## 14. Working with Files and Commands
+### Check if command exists
+```bash
+if command -v curl &>/dev/null; then
+  echo "curl installed"
+else
+  echo "curl missing"
+fi
+```
+
+### Example: read a file line by line
+```bash
+while read -r line; do
+  echo "Line: $line"
+done < /etc/hosts
+```
+
+## 15. Practical Tips for Wicked Scripts
+1. **Always start scripts with:**
+   ```bash
+   set -euo pipefail
+   IFS=$'\n\t'
+   ```
+
+   This prevents subtle parsing errors.
+
+2. **Use quotes** around variable expansions (`"$var"`) to prevent word splitting.
+3. **Use functions** to structure code and make it reusable.
+4. **Log clearly:**
+
+   ```bash
+   echo "$(date -u +"%F %T") INFO: Starting backup"
+   ```
+
+5. **Validate input early:**
+
+   ```bash
+   [[ "$var" =~ ^[0-9]+$ ]] || { echo "Not a number"; exit 1; }
+   ```
+
+## 16. Example: Putting It All Together
+
+```bash
+#!/usr/bin/env bash
+# Example system check script
+
+set -euo pipefail
+
+check_disk() {
+  local usage
+  usage=$(df / | awk 'NR==2 {print $5}' | tr -d '%')
+  if [ "$usage" -gt 80 ]; then
+    echo "Disk usage high: ${usage}%"
+  else
+    echo "Disk usage normal: ${usage}%"
+  fi
+}
+
+check_mem() {
+  local free
+  free=$(vm_stat | awk '/Pages free/ {print $3}' | tr -d '.')
+  echo "Free memory pages: $free"
+}
+
+echo "=== System Health Check ==="
+check_disk
+check_mem
+echo "Done."
+```
