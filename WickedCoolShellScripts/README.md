@@ -689,12 +689,18 @@ done
 
 ### Pro Tips
 
-| Tip                      | Description                                                        |
+| **Tip**                  | **Description**                                                    |
 | ------------------------ | ------------------------------------------------------------------ |
 | Always use quotes        | `"${array[@]}"` preserves each element even with spaces.           |
 | Use `${!array[@]}`       | Gets indices — useful for safe indexed iteration.                  |
 | Bash 4+ only             | Associative arrays require Bash 4 or later.                        |
 | Arrays persist in memory | If you reassign `array=("a")`, all previous elements are replaced. |
+
+| **Syntax** | **Return Value**           | **Data Type of Result**                 | `arr=(a b c)` |
+|------------|----------------------------|-----------------------------------------|---------------|
+|`${#arr[@]}`| Length (number of elements)| String                                  | `3`           |
+|`${arr[@]}` | All elements               | String (all elements separated by space)| `a b c`       | 
+|`${!arr[@]}`| All indexes (keys)         | String (all keys separated by space)    | `0 1 2`       |
 
 ### Example: Combining everything
 
