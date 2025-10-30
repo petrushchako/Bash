@@ -11,11 +11,20 @@ for i in {0..3}; do
     echo -ne "${message[i]}"
 done
 
+
+for i in ${!message[@]}; do
+    printf "${message[i]}"
+done
+
+
 echo $indexes
 echo {0..3}
 
-if [ $indexes -eq {0..3} ]; then
-    echo "Equal"
-else
-    echo "not Equal"
-fi
+declare -a cars
+cars[0]="Audi"
+cars[1]="Bently"
+cars[2]="Cadillac"
+
+echo "${cars[@]}"
+unset cars[1]
+echo "${cars[@]}"
