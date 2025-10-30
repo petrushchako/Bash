@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 declare -r version="1.0.0" # Create read only variable
 #int="1.0.1" #Following reassignement with different type would case error: ./test.sh: line 4: int: readonly variable
@@ -36,5 +36,5 @@ echo "${cars[@]}"
 
 declare -A dict
 dict=(["One"]=1 ["Two"]=2 ["Three"]=3)
-
-echo "${dict[@]}"
+echo "${!dict[@]}"  # One Three Two
+echo "${dict[@]}"   # 1 3 2
