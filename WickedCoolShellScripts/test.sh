@@ -38,3 +38,11 @@ declare -A dict
 dict=(["One"]=1 ["Two"]=2 ["Three"]=3)
 echo "${!dict[@]}"  # One Three Two
 echo "${dict[@]}"   # 1 3 2
+
+declare -A students
+students=([1]="Harry Potter" [2]="Ron Weasley" [3]="Hermione Granger")
+echo ${!students[@]} # 3 2 1
+
+for i in $(printf "%s\n" "${!students[@]}"| sort -n); do
+    echo "$i : ${students[$i]}"
+done
