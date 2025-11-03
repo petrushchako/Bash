@@ -1034,3 +1034,55 @@ echo "${fruits[1]}"      # banana
 
 <br>
 
+
+### **7. Common Conditional Constructs**
+#### **If–Else**
+```bash
+if [[ -f "/etc/passwd" ]]; then
+    echo "File exists."
+elif [[ -d "/etc" ]]; then
+    echo "Directory exists."
+else
+    echo "Path not found."
+fi
+```
+
+#### **Case Statement**
+```bash
+case "$option" in
+    start)
+        echo "Starting service...";;
+    stop)
+        echo "Stopping service...";;
+    *)
+        echo "Unknown command.";;
+esac
+```
+
+#### **For Loop**
+```bash
+for i in {1..3}; do
+    echo "Iteration $i"
+done
+```
+
+#### **While Loop**
+```bash
+count=0
+while (( count < 3 )); do
+    echo "Count: $count"
+    ((count++))
+done
+```
+
+<br>
+
+### **8. Summary Table — When to Use Each Bracket**
+
+| Brackets | Purpose                          | Context                      | Example               |
+| -------- | -------------------------------- | ---------------------------- | --------------------- |
+| `[ ]`    | Basic test command               | POSIX compatible             | `[ "$x" -eq 10 ]`     |
+| `[[ ]]`  | Advanced conditional test        | Bash-only, safer for strings | `[[ $x == "abc" ]]`   |
+| `(( ))`  | Arithmetic evaluation            | Integer math                 | `((x++))`             |
+| `{ }`    | Command grouping / expansion     | Same shell context           | `{ echo A; echo B; }` |
+| `( )`    | Subshell or array initialization | Separate shell / arrays      | `(cd /tmp && ls)`     |
