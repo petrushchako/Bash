@@ -857,3 +857,56 @@ my_function() {
 | Constant          | `declare -r` | `declare -r PI=3.14`           | Global          | Immutable                     |
 | Environment       | `export`     | `export PATH=/usr/bin`         | Child processes | For external visibility       |
 | Local             | `local`      | `local tmp=5`                  | Function scope  | Keeps function state isolated |
+
+<br><br><br>
+
+## **Bash Conditional Syntax and Symbol Reference**
+
+### **1. `[ ]` — POSIX Test Command**
+The single brackets `[` and `]` are the traditional **test command** used for evaluating conditional expressions.
+They are compatible with POSIX shells and support basic **string**, **numeric**, and **file** comparisons.
+
+**Key Points**
+* A space must follow `[` and precede `]`.
+* Variables should be quoted to avoid word splitting and globbing.
+* Returns exit status `0` (true) if the expression evaluates successfully.
+
+**Examples**
+```bash
+# String comparison
+if [ "$user" = "admin" ]; then
+    echo "Access granted."
+fi
+
+# Numeric comparison
+if [ "$age" -lt 18 ]; then
+    echo "Underage user."
+fi
+
+# File test
+if [ -f "/etc/passwd" ]; then
+    echo "File exists."
+fi
+```
+
+**Common Operators**
+
+| Type    | Operator    | Description                        |
+| ------- | ----------- | ---------------------------------- |
+| String  | `=`         | Strings are equal                  |
+| String  | `!=`        | Strings are not equal              |
+| Numeric | `-eq`       | Equal to                           |
+| Numeric | `-ne`       | Not equal to                       |
+| Numeric | `-lt`       | Less than                          |
+| Numeric | `-le`       | Less than or equal to              |
+| Numeric | `-gt`       | Greater than                       |
+| Numeric | `-ge`       | Greater than or equal to           |
+| File    | `-f file`   | True if file exists and is regular |
+| File    | `-d dir`    | True if directory exists           |
+| File    | `-r file`   | File is readable                   |
+| File    | `-w file`   | File is writable                   |
+| File    | `-x file`   | File is executable                 |
+| String  | `-z "$var"` | True if string is empty            |
+| String  | `-n "$var"` | True if string is not empty        |
+
+<br>
