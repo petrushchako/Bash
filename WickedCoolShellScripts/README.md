@@ -979,3 +979,58 @@ done
 
 **Supported Operators**
 `+`, `-`, `*`, `/`, `%`, `**`, `++`, `--`, `+=`, `-=`, `*=`, `/=`, `%=`
+
+<br>
+
+### **4. `{ }` — Command Grouping and Brace Expansion**
+#### **a. Command Grouping**
+Curly braces `{}` can group multiple commands to be executed in the **current shell context**.
+This differs from parentheses `()` which spawn a subshell.
+
+```bash
+{ echo "Starting process"; date; } > logfile.txt
+```
+
+- All grouped commands share the same redirections.
+- A semicolon or newline is required before the closing brace (`}`).
+
+#### **b. Brace Expansion**
+Brace expansion is a text generation feature, not related to variables or arithmetic.
+
+```bash
+echo {A,B,C}           # Outputs: A B C
+echo file{1..3}.txt    # Outputs: file1.txt file2.txt file3.txt
+```
+
+<br>
+
+### **5. `( )` — Subshells and Arrays**
+#### **a. Subshells**
+Parentheses create a **subshell** in which commands are executed in isolation.
+Changes to variables, directories, or environment inside do not affect the parent shell.
+
+```bash
+(cd /tmp && ls)
+echo "Back to original directory: $PWD"
+```
+
+#### **b. Arrays**
+Parentheses are also used for initializing **indexed arrays**.
+
+```bash
+fruits=("apple" "banana" "cherry")
+echo "${fruits[1]}"      # banana
+```
+
+<br>
+
+### **6. Logical and Conditional Operators**
+
+| Operator | Meaning     | Example                       |
+| -------- | ----------- | ----------------------------- |
+| `&&`     | Logical AND | `[[ $x -gt 0 && $x -lt 10 ]]` |
+| `\|\|`   | Logical OR  | `[[ $x -eq 0 \|\| $y -eq 1 ]]`|
+| `!`      | Logical NOT | `[[ ! -f /tmp/file.txt ]]`    |
+
+<br>
+
