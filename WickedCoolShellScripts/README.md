@@ -910,3 +910,72 @@ fi
 | String  | `-n "$var"` | True if string is not empty        |
 
 <br>
+
+### **2. `[[ ]]` — Bash Conditional Expression**
+The double brackets `[[` and `]]` are the **enhanced conditional test** used in Bash and Korn shell.
+They provide improved safety, additional operators, and simplified syntax.
+
+**Advantages**
+- No need to quote variables (prevents word splitting and globbing automatically).
+- Supports logical operators `&&`, `||`, and `!`.
+- Enables **pattern matching** (`==` and `!=`) and **regex matching** (`=~`).
+
+**Examples**
+
+```bash
+# String comparison
+if [[ $name == "Alex" ]]; then
+    echo "Welcome, Alex."
+fi
+
+# Logical operators
+if [[ $age -ge 18 && $age -lt 30 ]]; then
+    echo "Young adult."
+fi
+
+# Pattern matching
+if [[ $file == *.txt ]]; then
+    echo "Text file detected."
+fi
+
+# Regular expression
+if [[ $email =~ ^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$ ]]; then
+    echo "Valid email format."
+fi
+```
+
+**Notes**
+- `[[ ]]` is Bash-specific and not POSIX compliant.
+- It is recommended for modern Bash scripts because it handles variables more safely.
+
+<br>
+
+### **3. `(( ))` — Arithmetic Evaluation**
+The `(( ))` construct is used for **arithmetic expressions**.
+It supports integer operations without requiring `$` for variable expansion.
+
+**Key Points**
+- Evaluates arithmetic directly (no `expr` command needed).
+- Returns exit status `0` if the result is non-zero (true).
+- Supports increment/decrement and standard math operators.
+
+**Examples**
+```bash
+# Simple arithmetic
+(( sum = a + b ))
+
+# Conditional arithmetic test
+if (( a + b > 10 )); then
+    echo "Sum exceeds 10."
+fi
+
+# Increment and loop
+count=0
+while (( count < 5 )); do
+    echo "Count: $count"
+    ((count++))
+done
+```
+
+**Supported Operators**
+`+`, `-`, `*`, `/`, `%`, `**`, `++`, `--`, `+=`, `-=`, `*=`, `/=`, `%=`
