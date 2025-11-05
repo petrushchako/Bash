@@ -1086,3 +1086,47 @@ done
 | `(( ))`  | Arithmetic evaluation            | Integer math                 | `((x++))`             |
 | `{ }`    | Command grouping / expansion     | Same shell context           | `{ echo A; echo B; }` |
 | `( )`    | Subshell or array initialization | Separate shell / arrays      | `(cd /tmp && ls)`     |
+
+
+## Regular Expression
+### 1. What’s the difference between *globs* and *regex*?
+
+| Feature     | Globbing (Bash wildcards)              | Regular Expressions                                         |          |
+| ----------- | -------------------------------------- | ----------------------------------------------------------- | -------- |
+| Used in     | `ls *.txt`, `case`, filename expansion | `grep`, `sed`, `awk`, `[[ =~ ]]`                            |          |
+| `*` means   | Any **string of characters**           | Any **number of the preceding character/class** (e.g. `a*`) |          |
+| `?` means   | Exactly **one** character              | Also one of the **preceding item**, not just any            |          |
+| `[]` means  | One of the characters listed           | Same, but supports **ranges**, e.g. `[A-Za-z]`              |          |
+| Anchors     | Not used                               | `^` = start, `$` = end                                      |          |
+| Quantifiers | No                                     | `{n}`, `{n,}`, `{n,m}`, `+`, `?`, `*`                       |          |
+| Grouping    | No                                     | `(...)` for grouping                                        |          |
+| Alternation | No                                     | `                                                           | ` for OR |
+
+
+### 2. Where you use regex in Bash
+
+1. **`grep`** — filters lines by regex
+
+   ```bash
+   grep '^[A-Z]' file.txt    # lines starting with capital letters
+   ```
+
+2. **`sed`** — replaces text using regex
+
+   ```bash
+   sed 's/[0-9]\+/[NUMBER]/g' file.txt
+   ```
+
+3. **`awk`** — uses regex for pattern conditions
+
+   ```bash
+   awk '/error/ {print $0}' logfile
+   ```
+
+4. **Bash built-in regex match**
+
+   ```bash
+   if [[ $var =~ ^[0-9]+$ ]]; then
+       echo "Integer detected"
+   fi
+   ```
