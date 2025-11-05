@@ -1130,3 +1130,32 @@ done
        echo "Integer detected"
    fi
    ```
+   
+   
+   
+**Shell wildcards** (also called *globbing*), which are used by Bash when expanding filenames — for example, in commands like:
+
+```bash
+ls *.txt
+```
+
+or
+
+```bash
+rm file?.log
+```
+
+However, **regular expressions (regex)** behave differently — even though they *look* similar.
+
+Let’s compare the two to make sure you’ve got a solid foundation before diving deeper:
+
+| Concept  | Shell Wildcard (Globbing)                             | Regex (Regular Expression)                                                |
+| -------- | ----------------------------------------------------- | ------------------------------------------------------------------------- |
+| `*`      | Matches **any string** (including empty)              | Matches **zero or more occurrences** of the *previous* character or group |
+| `?`      | Matches **exactly one** character                     | Matches **exactly one** of *any* character                                |
+| `[abc]`  | Matches any **one** of `a`, `b`, or `c`               | Same in regex                                                             |
+| `[^abc]` | Matches any **one** character except `a`, `b`, or `c` | Same in regex                                                             |
+
+So for example:
+- `ls *.txt` → shell expands to all files ending with `.txt`.
+- `grep ".*\.txt"` → regex pattern that matches any line *containing* something ending in `.txt`.
