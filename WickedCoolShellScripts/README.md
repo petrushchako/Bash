@@ -1159,3 +1159,88 @@ Let’s compare the two to make sure you’ve got a solid foundation before divi
 So for example:
 - `ls *.txt` → shell expands to all files ending with `.txt`.
 - `grep ".*\.txt"` → regex pattern that matches any line *containing* something ending in `.txt`.
+
+
+
+## Anchors and grouping
+### *Anchors — `^` and `$`**
+**`^`** → Matches the **start** of a line.
+**`$`** → Matches the **end** of a line.
+
+**Example 1: Start of line**
+```bash
+echo -e "cat\nbat\nmat" | grep "^c"
+```
+
+Matches only `cat` — because it starts with `c`.
+
+**Example 2: End of line**
+```bash
+echo -e "jumping\nrunning\nwalk" | grep "ing$"
+```
+
+Matches `jumping` and `running`, not `walk`.
+> Tip: If you forget anchors, grep can match anywhere in the line.
+
+<br>
+
+### **Alternation — `|`**
+The `|` symbol means **“or”** between patterns.
+
+**Example:**
+```bash
+echo "cat dog bat" | grep -E "cat|dog"
+```
+
+Matches `cat` and `dog`.
+> You need `-E` for this (extended regex mode).
+
+<br>
+
+### **Grouping — `()`**
+Parentheses let you **group patterns together**, often used with `|` or quantifiers.
+
+**Example:**
+```bash
+echo "gray grey" | grep -E "gr(a|e)y"
+```
+
+Matches both `gray` and `grey`.
+
+### **Quantifiers with Groups**
+You can apply `*`, `+`, or `?` to entire groups.
+
+**Example:**
+```bash
+echo "haha hahahaha ha" | grep -E "(ha)+"
+```
+
+Matches all — because `(ha)` repeats one or more times.
+
+<br>
+
+### **Escaping special characters**
+Characters like `.`, `*`, `?`, `(`, `)`, `[` have **special meanings** in regex.
+If you want to match them literally, you need to escape them with a backslash `\`.
+
+**Example:**
+```bash
+echo "file.txt file1.txt file2.txt" | grep "file\.txt"
+```
+
+Matches only `file.txt`, not `file1.txt` or `file2.txt`.
+
+
+### **Quick Summary Table**
+
+| Symbol | Meaning                       | Example   | Matches        |      |          |
+| ------ | ----------------------------- | --------- | -------------- | ---- | -------- |
+| `.`    | Any single character          | `c.t`     | cat, cot, cut  |      |          |
+| `*`    | 0+ of previous                | `lo*l`    | ll, lol, loool |      |          |
+| `+`    | 1+ of previous                | `ho+`     | ho, hoo, hooo  |      |          |
+| `?`    | 0 or 1 of previous            | `colou?r` | color, colour  |      |          |
+| `[]`   | Any 1 character in brackets   | `[ch]at`  | cat, hat       |      |          |
+| `[^]`  | Not any character in brackets | `[^ch]at` | bat, mat       |      |          |
+| `^`    | Start of line                 | `^The`    | "The dog"      |      |          |
+| `$`    | End of line                   | `end$`    | "the end"      |      |          |
+| `()`   | Group                         | `(ha)+`   | ha, hahaha     |      |          |
